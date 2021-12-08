@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SistemaClinica.BackEnd.BD", "SistemaClinica.BackEnd.BD\SistemaClinica.BackEnd.BD.sqlproj", "{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F725BC4-84D1-4914-8301-10CCD3BD5E30}
+	EndGlobalSection
+EndGlobal

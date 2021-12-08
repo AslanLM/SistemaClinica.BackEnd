@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SistemaClinica.BackEnd.BD</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{1dce1fa9-d0fa-4a25-bf3d-9abb7dc26189}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SistemaClinica.BackEnd.BD</RootNamespace>
+    <AssemblyName>SistemaClinica.BackEnd.BD</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables\" />
+    <Folder Include="Views\" />
+    <Folder Include="Functions\" />
+    <Folder Include="Stored Procedures\" />
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Clinicas.sql" />
+    <Build Include="Tables\Pacientes.sql" />
+    <Build Include="Tables\Doctores.sql" />
+    <Build Include="Tables\Diagnosticos.sql" />
+    <Build Include="Tables\Consultorios.sql" />
+    <Build Include="Tables\Citas.sql" />
+    <Build Include="Tables\DiagnosticosDeCitas.sql" />
+    <Build Include="Tables\Medicamentos.sql" />
+    <Build Include="Tables\MedicamentosDeCitas.sql" />
+    <Build Include="Views\vwClinicas_SeleccionarTodo.sql" />
+    <Build Include="Views\vwPaciente_SeleccionarTodos.sql" />
+    <Build Include="Views\vwDoctores_SeleccionarTodos.sql" />
+    <Build Include="Views\vwDiagnosticos_SeleccionarTodos.sql" />
+    <Build Include="Views\vwConsultorios_SeleccionarTodos.sql" />
+    <Build Include="Views\vwCitas_SeleccionarTodos.sql" />
+    <Build Include="Views\vwDiagnosticosDeCitas_SeleccionarTodos.sql" />
+    <Build Include="Views\vwMedicamentos_SeleccionarTodos.sql" />
+    <Build Include="Views\vwMedicamentosDeCitas_SeleccionarTodos.sql" />
+    <Build Include="Functions\fnClinicas_SeleccionarPorId.sql" />
+    <Build Include="Functions\fnClinicas_SeleccionarTodo.sql" />
+    <Build Include="Functions\fnPacientes_SeleccionarPacientesPorId.sql" />
+    <Build Include="Functions\fnPacientes_SeleccionarPacientesTodos.sql" />
+    <Build Include="Functions\fnDoctores_SeleccionarDoctorPorId.sql" />
+    <Build Include="Functions\fnDoctores_SeleccionarDoctoresTodos.sql" />
+    <Build Include="Functions\fnDiagnosticos_seleccionarPorId.sql" />
+    <Build Include="Functions\fnDiagnosticos_SeleccionarTodos.sql" />
+    <Build Include="Functions\fnConsultorios_SeleccionarPorId.sql" />
+    <Build Include="Functions\fnConsultorios_SeleccionarTodo.sql" />
+    <Build Include="Functions\fnCitas_SeleccionarPorId.sql" />
+    <Build Include="Functions\fnCitas_SeleccionarTodo.sql" />
+    <Build Include="Functions\fnDiagnosticosDeCitas_SeleccionaPorId.sql" />
+    <Build Include="Functions\fnDiagnosticosDeCitas_SeleccionarTodos.sql" />
+    <Build Include="Functions\fnMedicamentos_SeleccionarPorId.sql" />
+    <Build Include="Functions\fnMedicamentos_SeleccionarTodos.sql" />
+    <Build Include="Functions\fnMedicamentosDeCitas_SeleccionaPorId.sql" />
+    <Build Include="Functions\fnMedicamentosDeCitas_SeleccionarTodos.sql" />
+    <Build Include="Stored Procedures\SP_Clinicas_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_Clinicas_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_Clinicas_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_Pacientes_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_Pacientes_Actualizar.sql" />
+    <Build Include="Stored Procedures\Sp_Pacientes_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_Doctores_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_Doctores_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_Diagnosticos_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_Diagnosticos_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_Diagnosticos_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_Consultorios_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_Consultorios_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_Consultorios_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_Citas_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_Citas_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_Citas_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_DiagnosticosDeCitas_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_DiagnosticosDeCitas_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_DiagnosticosDeCitas_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_Medicamentos_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_Medicamentos_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_Medicamentos_Eliminar.sql" />
+    <Build Include="Stored Procedures\SP_MedicamentosDeCitas_Insertar.sql" />
+    <Build Include="Stored Procedures\SP_MedicamentosDeCitas_Actualizar.sql" />
+    <Build Include="Stored Procedures\SP_MedicamentosDeCitas_Eliminar.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="Stored Procedures\SP_Doctores_Insertar.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SistemaClinica.BackEnd.BD.publish.xml" />
+  </ItemGroup>
+</Project>

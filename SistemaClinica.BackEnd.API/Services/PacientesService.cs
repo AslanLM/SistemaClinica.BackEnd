@@ -31,7 +31,7 @@ namespace SistemaClinica.BackEnd.API.Services
         {
             using (var bd = BD.Conectar())
             {
-                bd.Repositories.DoctorRepository.Insertar(model);
+                bd.Repositories.PacientesRepository.Insertar(model);
 
                 bd.SaveChanges();
             }
@@ -51,7 +51,7 @@ namespace SistemaClinica.BackEnd.API.Services
             return PacienteSeleccionado;
         }
 
-        public IEnumerable<Doctores> SeleccionarTodos()
+        public IEnumerable<Pacientes> SeleccionarTodos()
         {
             throw new System.NotImplementedException();
         }

@@ -19,10 +19,10 @@ namespace SistemaClinica.BackEnd.API.Repository
         }
         public void Actualizar(Pacientes paciente)
         {
-            var query = "UPDATE Aula SET NombreDoctor = @NombreDoctor, Apellido  = @Apellido, Telefono = @Telefono, FechaModificacion = @FechaModificacion, ModificadoPor = @ModificadoPor WHERE CedulaDoctor = @Doctor";
+            var query = "UPDATE Aula SET NombrePaciente = @NombrePaciente, Apellido  = @Apellido, Telefono = @Telefono, Edad = @Edad, FechaModificacion = @FechaModificacion, ModificadoPor = @ModificadoPor WHERE CedulaPaciente = @Paciente";
             var command = CreateCommand(query);
 
-            command.Parameters.AddWithValue("@NombreDoctor", paciente.NombrePaciente);
+            command.Parameters.AddWithValue("@NombrePaciente", paciente.NombrePaciente);
             command.Parameters.AddWithValue("@Apellido", paciente.Apellidos);
             command.Parameters.AddWithValue("@Telefono", paciente.Telefono);
             command.Parameters.AddWithValue("@Telefono", paciente.Edad);
@@ -45,7 +45,7 @@ namespace SistemaClinica.BackEnd.API.Repository
             var command = CreateCommand(query);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            command.Parameters.AddWithValue("@CedulaDoctor", paciente.CedulaPaciente);
+            command.Parameters.AddWithValue("@CedulaPaciente", paciente.CedulaPaciente);
             command.Parameters.AddWithValue("@NombreDoctor", paciente.NombrePaciente);
             command.Parameters.AddWithValue("@Apellido", paciente.Apellidos);
             command.Parameters.AddWithValue("@Telefono", paciente.Telefono);
@@ -62,7 +62,7 @@ namespace SistemaClinica.BackEnd.API.Repository
             var query = "SELECT * FROM vw_Aula_SeleccionarActivos WHERE NumeroAula = @CedulaDoctor";
             var command = CreateCommand(query);
 
-            command.Parameters.AddWithValue("@CedulaDoctor", CedulaPaciente);
+            command.Parameters.AddWithValue("@CedulaPaciente", CedulaPaciente);
 
             SqlDataReader reader = command.ExecuteReader();
 

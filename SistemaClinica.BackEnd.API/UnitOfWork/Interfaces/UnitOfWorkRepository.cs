@@ -6,6 +6,7 @@ namespace SistemaClinica.BackEnd.API.UnitOfWork.Interfaces
     public interface IUnitOfWorkRepository
     {
         IDoctoresRepository DoctorRepository { get; }
+        IPacientesRepository PacientesRepository { get; }
 
     }
 }

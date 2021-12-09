@@ -88,7 +88,7 @@ namespace SistemaClinica.BackEnd.API.Repository
             return PacienteSeleccionado;
         }
 
-        public IEnumerable<Doctores> SeleccionarTodos()
+        public IEnumerable<Pacientes> SeleccionarTodos()
         {
             throw new NotImplementedException();
         }

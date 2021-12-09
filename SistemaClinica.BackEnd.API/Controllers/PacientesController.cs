@@ -10,7 +10,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
     [ApiController]
     public class PacientesController : ControllerBase
     {
-        private readonly IPacientesService Pacientes; 
+        private readonly IPacientesService Pacientes;  
         public PacientesController(IPacientesService PacientesService)
         {
             Pacientes = PacientesService;

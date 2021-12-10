@@ -19,16 +19,16 @@ namespace SistemaClinica.BackEnd.API.Repository
         }
         public void Actualizar(Pacientes paciente)
         {
-            var query = "UPDATE Aula SET NombrePaciente = @NombrePaciente, Apellido  = @Apellido, Telefono = @Telefono, Edad = @Edad, FechaModificacion = @FechaModificacion, ModificadoPor = @ModificadoPor WHERE CedulaPaciente = @Paciente";
+            var query = "SP_Pacientes_Actualizar";
             var command = CreateCommand(query);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
 
+            command.Parameters.AddWithValue("@CedulaPaciente", paciente.CedulaPaciente);
             command.Parameters.AddWithValue("@NombrePaciente", paciente.NombrePaciente);
-            command.Parameters.AddWithValue("@Apellido", paciente.Apellidos);
+            command.Parameters.AddWithValue("@Apellidos", paciente.Apellidos);
             command.Parameters.AddWithValue("@Telefono", paciente.Telefono);
-            command.Parameters.AddWithValue("@Telefono", paciente.Edad);
-            command.Parameters.AddWithValue("@FechaModificacion", paciente.FechaModificacion);
+            command.Parameters.AddWithValue("@Edad", paciente.Edad);
             command.Parameters.AddWithValue("@ModificadoPor", paciente.ModificadoPor);
-            command.Parameters.AddWithValue("@CedulaDoctor", paciente.CedulaPaciente);
 
             command.ExecuteNonQuery();
         }
@@ -41,15 +41,15 @@ namespace SistemaClinica.BackEnd.API.Repository
         public void Insertar(Pacientes paciente)
         {
 
-            var query = "SP_Doctores_Insertar";
+            var query = "SP_Pacientes_Insertar";
             var command = CreateCommand(query);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@CedulaPaciente", paciente.CedulaPaciente);
-            command.Parameters.AddWithValue("@NombreDoctor", paciente.NombrePaciente);
-            command.Parameters.AddWithValue("@Apellido", paciente.Apellidos);
+            command.Parameters.AddWithValue("@NombrePaciente", paciente.NombrePaciente);
+            command.Parameters.AddWithValue("@Apellidos", paciente.Apellidos);
             command.Parameters.AddWithValue("@Telefono", paciente.Telefono);
-            command.Parameters.AddWithValue("@Telefono", paciente.Edad);
+            command.Parameters.AddWithValue("@Edad", paciente.Edad);
             command.Parameters.AddWithValue("@CreadoPor", paciente.CreadoPor);
 
             command.ExecuteNonQuery();
@@ -59,38 +59,66 @@ namespace SistemaClinica.BackEnd.API.Repository
 
         public Pacientes SeleccionarPorId(String CedulaPaciente)
         {
-            var query = "SELECT * FROM vw_Aula_SeleccionarActivos WHERE NumeroAula = @CedulaDoctor";
+            var query = "SELECT * FROM vwPaciente_SeleccionarTodos WHERE CedulaPaciente = @CedulaPaciente";
             var command = CreateCommand(query);
 
             command.Parameters.AddWithValue("@CedulaPaciente", CedulaPaciente);
 
             SqlDataReader reader = command.ExecuteReader();
 
-            Pacientes PacienteSeleccionado = new();
+            Pacientes PacientesSeleccionado = new();
 
             while (reader.Read())
             {
-                PacienteSeleccionado.CedulaPaciente = Convert.ToString(reader["CedulaPaciente"]);
-                PacienteSeleccionado.NombrePaciente = Convert.ToString(reader["NombrePaciente"]);
-                PacienteSeleccionado.Apellidos = Convert.ToString(reader["Apellidos"]);
-                PacienteSeleccionado.Telefono = Convert.ToString(reader["Telefono"]);
-                PacienteSeleccionado.Edad = Convert.ToString(reader["Edad"]);
-                PacienteSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
-                PacienteSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
-                PacienteSeleccionado.FechaModificacion = (DateTime?)(reader.IsDBNull("FechaModificacion") ? null : reader["FechaModificacion"]);
-                PacienteSeleccionado.CreadoPor = Convert.ToString(reader["CreadoPor"]);
-                PacienteSeleccionado.ModificadoPor = Convert.ToString(reader["ModificadoPor"]);
+                PacientesSeleccionado.CedulaPaciente = Convert.ToString(reader["CedulaPaciente"]);
+                PacientesSeleccionado.NombrePaciente = Convert.ToString(reader["NombrePaciente"]);
+                PacientesSeleccionado.Apellidos = Convert.ToString(reader["Apellidos"]);
+                PacientesSeleccionado.Telefono = Convert.ToString(reader["Telefono"]);
+                PacientesSeleccionado.Edad = Convert.ToInt32(reader["Edad"]);
+                PacientesSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
+                PacientesSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
+                PacientesSeleccionado.FechaModificacion = (DateTime?)(reader.IsDBNull("FechaModificacion") ? null : reader["FechaModificacion"]);
+                PacientesSeleccionado.CreadoPor = Convert.ToString(reader["CreadoPor"]);
+                PacientesSeleccionado.ModificadoPor = Convert.ToString(reader["ModificadoPor"]);
 
             }
 
             reader.Close();
 
-            return PacienteSeleccionado;
+            return PacientesSeleccionado;
         }
 
-        public IEnumerable<Pacientes> SeleccionarTodos()
+        public List<Pacientes> SeleccionarTodos()
         {
-            throw new NotImplementedException();
+            var query = "SELECT * FROM vwPaciente_SeleccionarTodos";
+            var command = CreateCommand(query);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<Pacientes> ListaTodosLosPacientes = new List<Pacientes>();
+
+            while (reader.Read())
+            {
+                Pacientes PacientesSeleccionado = new();
+
+                PacientesSeleccionado.CedulaPaciente = Convert.ToString(reader["CedulaPaciente"]);
+                PacientesSeleccionado.NombrePaciente = Convert.ToString(reader["NombrePaciente"]);
+                PacientesSeleccionado.Apellidos = Convert.ToString(reader["Apellidos"]);
+                PacientesSeleccionado.Telefono = Convert.ToString(reader["Telefono"]);
+                PacientesSeleccionado.Edad = Convert.ToInt32(reader["Edad"]);
+                PacientesSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
+                PacientesSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
+                PacientesSeleccionado.FechaModificacion = (DateTime?)(reader.IsDBNull("FechaModificacion") ? null : reader["FechaModificacion"]);
+                PacientesSeleccionado.CreadoPor = Convert.ToString(reader["CreadoPor"]);
+                PacientesSeleccionado.ModificadoPor = Convert.ToString(reader["ModificadoPor"]);
+
+                ListaTodosLosPacientes.Add(PacientesSeleccionado);
+            }
+
+            reader.Close();
+
+            return ListaTodosLosPacientes;
         }
     }
 }
+

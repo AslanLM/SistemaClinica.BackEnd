@@ -23,7 +23,7 @@ namespace SistemaClinica.BackEnd.API.Dtos
         public string Telefono { get; set; }
 
         [Required(ErrorMessage = "{0} es un campo obligatorio")]
-        public string Edad { get; set; }
+        public int Edad { get; set; }
 
         public bool Activo { get; set; }
 

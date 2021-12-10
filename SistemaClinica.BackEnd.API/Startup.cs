@@ -7,6 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SistemaClinica.BackEnd.API.Services;
+using SistemaClinica.BackEnd.API.Services.Interfaces;
+using SistemaClinica.BackEnd.API.UnitOfWork.Interfaces;
+using SistemaClinica.BackEnd.API.UnitOfWork.SqlServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +31,21 @@ namespace SistemaClinica.BackEnd.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {   
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                }); //Esto hace que se mantengan las propiedades tal cual se escriben en los modelos
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaClinica.BackEnd.API", Version = "v1" });
             });
+
+            services.AddTransient<IUnitOfWork, UnitOfWorkSqlServer>();
+            services.AddTransient<IDoctorService, DoctorService>();
+            services.AddTransient<IPacientesService, PacientesService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

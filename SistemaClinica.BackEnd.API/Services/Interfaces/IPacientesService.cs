@@ -5,7 +5,7 @@ namespace SistemaClinica.BackEnd.API.Services.Interfaces
 {
     public interface IPacientesService
     {
-        IEnumerable<Pacientes> SeleccionarTodos();
+        List<Pacientes> SeleccionarTodos();
         Pacientes SeleccionarPorId(string id);
         void Insertar(Pacientes model);
         void Actualizar(Pacientes model);

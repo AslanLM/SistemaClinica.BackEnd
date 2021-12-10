@@ -51,9 +51,20 @@ namespace SistemaClinica.BackEnd.API.Services
             return DoctorSeleccionado;
         }
 
-        public IEnumerable<Doctores> SeleccionarTodos()
+        public List<Doctores> SeleccionarTodos()
         {
-            throw new System.NotImplementedException();
+            List<Doctores> ListaTodosLosDoctores;
+
+            using (var bd = BD.Conectar())
+            {
+                ListaTodosLosDoctores = bd.Repositories.DoctorRepository.SeleccionarTodos();
+
+                bd.SaveChanges();
+            }
+
+            return ListaTodosLosDoctores;
+
         }
     }
 }
+

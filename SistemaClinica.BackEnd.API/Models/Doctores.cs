@@ -8,7 +8,7 @@ namespace SistemaClinica.BackEnd.API.Models
 
 		public string NombreDoctor { get; set; }
 
-		public string Apellido { get; set; }
+		public string Apellidos { get; set; }
 
 		public string Telefono { get; set; }
 

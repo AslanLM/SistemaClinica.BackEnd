@@ -12,7 +12,7 @@ namespace SistemaClinica.BackEnd.API.Models
 
 		public string Telefono { get; set; }
 
-		public string Edad { get; set; }
+		public int Edad { get; set; }
 
 		public bool Activo { get; set; }
 

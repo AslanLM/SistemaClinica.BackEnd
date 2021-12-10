@@ -17,7 +17,7 @@ namespace SistemaClinica.BackEnd.API.Dtos
         public string NombreDoctor { get; set; }
 
         [Required(ErrorMessage = "{0} es un campo obligatorio")]
-        public string Apellido { get; set; }
+        public string Apellidos { get; set; }
 
         [Required(ErrorMessage = "{0} es un campo obligatorio")]
         public string Telefono { get; set; }

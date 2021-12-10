@@ -19,15 +19,16 @@ namespace SistemaClinica.BackEnd.API.Repository
         }
         public void Actualizar(Doctores doctor)
         {
-            var query = "UPDATE Aula SET NombreDoctor = @NombreDoctor, Apellido  = @Apellido, Telefono = @Telefono, FechaModificacion = @FechaModificacion, ModificadoPor = @ModificadoPor WHERE CedulaDoctor = @Doctor";
+            var query = "SP_Doctores_Actualizar";
             var command = CreateCommand(query);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            command.Parameters.AddWithValue("@NombreDoctor", doctor.NombreDoctor);
-            command.Parameters.AddWithValue("@Apellido", doctor.Apellido);
-            command.Parameters.AddWithValue("@Telefono", doctor.Telefono);
-            command.Parameters.AddWithValue("@FechaModificacion", doctor.FechaModificacion);
-            command.Parameters.AddWithValue("@ModificadoPor", doctor.ModificadoPor);
             command.Parameters.AddWithValue("@CedulaDoctor", doctor.CedulaDoctor);
+            command.Parameters.AddWithValue("@NombreDoctor", doctor.NombreDoctor);
+            command.Parameters.AddWithValue("@Apellidos", doctor.Apellidos);
+            command.Parameters.AddWithValue("@Telefono", doctor.Telefono);
+            command.Parameters.AddWithValue("@ModificadoPor", doctor.ModificadoPor);
+           
 
             command.ExecuteNonQuery();
         }
@@ -46,7 +47,7 @@ namespace SistemaClinica.BackEnd.API.Repository
 
             command.Parameters.AddWithValue("@CedulaDoctor", doctor.CedulaDoctor);
             command.Parameters.AddWithValue("@NombreDoctor", doctor.NombreDoctor);
-            command.Parameters.AddWithValue("@Apellido", doctor.Apellido);
+            command.Parameters.AddWithValue("@Apellidos", doctor.Apellidos);
             command.Parameters.AddWithValue("@Telefono", doctor.Telefono);
             command.Parameters.AddWithValue("@CreadoPor", doctor.CreadoPor);
 
@@ -57,7 +58,7 @@ namespace SistemaClinica.BackEnd.API.Repository
 
         public Doctores SeleccionarPorId(String CedulaDoctor)
         {
-            var query = "SELECT * FROM vw_Aula_SeleccionarActivos WHERE NumeroAula = @CedulaDoctor";
+            var query = "SELECT * FROM vwDoctores_SeleccionarTodos WHERE CedulaDoctor = @CedulaDoctor";
             var command = CreateCommand(query);
 
             command.Parameters.AddWithValue("@CedulaDoctor", CedulaDoctor);
@@ -70,7 +71,7 @@ namespace SistemaClinica.BackEnd.API.Repository
             {
                 DoctorSeleccionado.CedulaDoctor = Convert.ToString(reader["CedulaDoctor"]);
                 DoctorSeleccionado.NombreDoctor = Convert.ToString(reader["NombreDoctor"]);
-                DoctorSeleccionado.Apellido = Convert.ToString(reader["Apellido"]);
+                DoctorSeleccionado.Apellidos = Convert.ToString(reader["Apellidos"]);
                 DoctorSeleccionado.Telefono = Convert.ToString(reader["Telefono"]);
                 DoctorSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
                 DoctorSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
@@ -85,9 +86,35 @@ namespace SistemaClinica.BackEnd.API.Repository
             return DoctorSeleccionado;
         }
 
-        public IEnumerable<Doctores> SeleccionarTodos()
+        public List<Doctores> SeleccionarTodos()
         {
-            throw new NotImplementedException();
+            var query = "SELECT * FROM vwDoctores_SeleccionarTodos";
+            var command = CreateCommand(query);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<Doctores> ListaTodosLosDoctores = new List<Doctores>();
+
+            while (reader.Read())
+            {
+                Doctores DoctorSeleccionado = new();
+
+                DoctorSeleccionado.CedulaDoctor = Convert.ToString(reader["CedulaDoctor"]);
+                DoctorSeleccionado.NombreDoctor = Convert.ToString(reader["NombreDoctor"]);
+                DoctorSeleccionado.Apellidos = Convert.ToString(reader["Apellidos"]);
+                DoctorSeleccionado.Telefono = Convert.ToString(reader["Telefono"]);
+                DoctorSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
+                DoctorSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
+                DoctorSeleccionado.FechaModificacion = (DateTime?)(reader.IsDBNull("FechaModificacion") ? null : reader["FechaModificacion"]);
+                DoctorSeleccionado.CreadoPor = Convert.ToString(reader["CreadoPor"]);
+                DoctorSeleccionado.ModificadoPor = Convert.ToString(reader["ModificadoPor"]);
+
+                ListaTodosLosDoctores.Add(DoctorSeleccionado);
+            }
+
+            reader.Close();
+
+            return ListaTodosLosDoctores;
         }
     }
 }

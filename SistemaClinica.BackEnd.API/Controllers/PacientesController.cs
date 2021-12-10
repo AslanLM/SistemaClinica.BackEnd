@@ -10,16 +10,34 @@ namespace SistemaClinica.BackEnd.API.Controllers
     [ApiController]
     public class PacientesController : ControllerBase
     {
-        private readonly IPacientesService Pacientes;  
+        private readonly IPacientesService PacientesServicio;  
         public PacientesController(IPacientesService PacientesService)
         {
-            Pacientes = PacientesService;
+            PacientesServicio = PacientesService;
         }
         // GET: api/<PacientesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<PacientesDto> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Pacientes> ListaTodosLosPacientes = PacientesServicio.SeleccionarTodos();
+
+            List<PacientesDto> ListaTodosLosPacientesDto = new();
+
+            foreach (var Pacientesseleccionado in ListaTodosLosPacientes)
+            {
+                PacientesDto PacientesDTO = new();
+
+                PacientesDTO.CedulaPaciente = Pacientesseleccionado.CedulaPaciente;
+                PacientesDTO.NombrePaciente = Pacientesseleccionado.NombrePaciente;
+                PacientesDTO.Apellidos = Pacientesseleccionado.Apellidos;
+                PacientesDTO.Telefono = Pacientesseleccionado.Telefono;
+                PacientesDTO.Edad = Pacientesseleccionado.Edad;
+                PacientesDTO.Activo = Pacientesseleccionado.Activo;
+
+                ListaTodosLosPacientesDto.Add(PacientesDTO);
+            }
+
+            return ListaTodosLosPacientesDto;
         }
 
         // GET api/<PacientesController>/5
@@ -28,11 +46,11 @@ namespace SistemaClinica.BackEnd.API.Controllers
         {
             Pacientes Pacientesseleccionado = new();
 
-            Pacientesseleccionado = Pacientes.SeleccionarPorId(id);
+            Pacientesseleccionado = PacientesServicio.SeleccionarPorId(id);
 
             if (Pacientesseleccionado.CedulaPaciente is null)
             {
-                return NotFound("Doctor no encontrado");
+                return NotFound("Paciente no encontrado");
             }
 
             PacientesDto PacientesDTO = new();
@@ -66,7 +84,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             PacientePorInsertar.CreadoPor = "lackwoodsj";
 
-            Pacientes.Insertar(PacientePorInsertar);
+            PacientesServicio.Insertar(PacientePorInsertar);
 
             return Ok();
         }
@@ -82,11 +100,11 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             Pacientes Pacienteseleccionado = new();
 
-            Pacienteseleccionado = Pacientes.SeleccionarPorId(id);
+            Pacienteseleccionado = PacientesServicio.SeleccionarPorId(id);
 
             if (Pacienteseleccionado.CedulaPaciente is null)
             {
-                return NotFound("Paciente no encontrada");
+                return NotFound("Paciente no encontrado");
             }
 
             Pacientes PacientePorActualizar = new();
@@ -101,15 +119,29 @@ namespace SistemaClinica.BackEnd.API.Controllers
             PacientePorActualizar.FechaModificacion = System.DateTime.Now;
             PacientePorActualizar.ModificadoPor = "Lackwoodsj";
 
-            Pacientes.Actualizar(PacientePorActualizar);
+            PacientesServicio.Actualizar(PacientePorActualizar);
 
             return Ok();
         }
 
         // DELETE api/<PacientesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            Pacientes Pacientesseleccionado = new();
+
+            Pacientesseleccionado = PacientesServicio.SeleccionarPorId(id);
+
+            if (Pacientesseleccionado.CedulaPaciente is null)
+            {
+                return NotFound("Paciente no encontrado");
+            }
+
+            Pacientesseleccionado.Activo = false; //Esto realiza el eliminado lógico
+
+            PacientesServicio.Actualizar(Pacientesseleccionado);
+
+            return Ok("Registro eliminado");
         }
     }
 }

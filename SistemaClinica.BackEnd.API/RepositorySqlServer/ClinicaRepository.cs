@@ -26,6 +26,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
             command.Parameters.AddWithValue("@IdClinica", clinica.IdClinica);
             command.Parameters.AddWithValue("@NombreClinica", clinica.NombreClinica);
             command.Parameters.AddWithValue("@CedulaJuridica", clinica.CedulaJuridica);
+            command.Parameters.AddWithValue("@Activo", clinica.Activo);
             command.Parameters.AddWithValue("@ModificadoPor", clinica.ModificadoPor);
 
 

@@ -27,6 +27,7 @@ namespace SistemaClinica.BackEnd.API.Repository
             command.Parameters.AddWithValue("@NombreDoctor", doctor.NombreDoctor);
             command.Parameters.AddWithValue("@Apellidos", doctor.Apellidos);
             command.Parameters.AddWithValue("@Telefono", doctor.Telefono);
+            command.Parameters.AddWithValue("@Activo", doctor.Activo);
             command.Parameters.AddWithValue("@ModificadoPor", doctor.ModificadoPor);
            
 

@@ -19,13 +19,14 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
         }
         public void Actualizar(Consultorios consultorios)
         {
-            var query = "SP_Doctores_Actualizar";
+            var query = "SP_Consultorios_Actualizar";
             var command = CreateCommand(query);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@IdConsultorio", consultorios.IdConsultorio);
             command.Parameters.AddWithValue("@NombreConsultorio", consultorios.NombreConsultorio);
             command.Parameters.AddWithValue("@IdClinica", consultorios.IdClinica);
+            command.Parameters.AddWithValue("@Activo", consultorios.Activo);
             command.Parameters.AddWithValue("@ModificadoPor", consultorios.ModificadoPor);
 
 
@@ -85,7 +86,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
 
         public List<Consultorios> SeleccionarTodos()
         {
-            var query = "SELECT * FROM vwConsultorio_SeleccionarTodos";
+            var query = "SELECT * FROM vwConsultorios_SeleccionarTodos";
             var command = CreateCommand(query);
 
             SqlDataReader reader = command.ExecuteReader();

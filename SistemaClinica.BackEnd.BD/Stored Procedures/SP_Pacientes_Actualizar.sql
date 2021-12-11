@@ -4,6 +4,7 @@
 	@Apellidos VARCHAR(60),
 	@Telefono VARCHAR(12),
 	@Edad INT,
+	@Activo BIT,
 	@ModificadoPor VARCHAR(60)
 AS
 BEGIN
@@ -12,6 +13,7 @@ BEGIN
 		NombrePaciente = @NombrePaciente, 
 		Apellidos = @Apellidos, 
 		Telefono = @Telefono,
+		Activo = @Activo,
 		ModificadoPor = @ModificadoPor,
 		FechaModificacion = GETDATE()
 	WHERE 

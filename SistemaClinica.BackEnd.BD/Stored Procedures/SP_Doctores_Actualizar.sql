@@ -3,7 +3,9 @@
 	@NombreDoctor VARCHAR(40),
 	@Apellidos VARCHAR(60),
 	@Telefono VARCHAR(12),
-	@ModificadoPor VARCHAR(60)		
+	@Activo BIT,
+	@ModificadoPor VARCHAR(60)	
+	
 AS
 BEGIN
 	UPDATE Doctores 
@@ -11,6 +13,7 @@ BEGIN
 		NombreDoctor = @NombreDoctor, 
 		Apellidos = @Apellidos, 
 		Telefono = @Telefono,
+		Activo = @Activo,
 		ModificadoPor = @ModificadoPor,
 		FechaModificacion = GETDATE()
 	WHERE 

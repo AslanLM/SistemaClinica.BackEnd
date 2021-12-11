@@ -86,7 +86,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
             return Ok();
         }
 
-        // PUT api/<AulasController>/5
+        // PUT api/<DoctorController>/5
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] DoctoresDto DoctoresDTO)
         {
@@ -119,7 +119,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
             return Ok();
         }
 
-        // DELETE api/<AulasController>/5
+        // DELETE api/<DoctorController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {

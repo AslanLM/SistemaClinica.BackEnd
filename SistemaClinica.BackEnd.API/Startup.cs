@@ -45,6 +45,8 @@ namespace SistemaClinica.BackEnd.API
             services.AddTransient<IUnitOfWork, UnitOfWorkSqlServer>();
             services.AddTransient<IDoctorService, DoctorService>();
             services.AddTransient<IPacientesService, PacientesService>();
+            services.AddTransient<IClinicaService, ClinicaService>();
+            services.AddTransient<IConsultorioService, ConsultorioSerivce>();
 
         }
 

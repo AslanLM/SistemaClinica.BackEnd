@@ -10,7 +10,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
     [ApiController]
     public class MedicamentosController : ControllerBase
     {
-        private readonly IDoctorService DoctorServicio;
+        private readonly IMedicamentosService MedicamentosServicio;
         public MedicamentosController(IMedicamentosService MedicamentosService)
         {
             MedicamentosServicio = MedicamentosService;
@@ -27,10 +27,10 @@ namespace SistemaClinica.BackEnd.API.Controllers
             {
                 MedicamentosDto MedicamentosDTO = new();
 
-                MedicamentosDto.IdMedicamento = Doctorseleccionado.IdMedicamento;
-                MedicamentosDto.NombreMedicamento = Doctorseleccionado.NombreMedicamento;
-                MedicamentosDto.Precio = Doctorseleccionado.Precio;
-                MedicamentosDto.Activo = Doctorseleccionado.Activo;
+                MedicamentosDTO.IdMedicamento = Medicamentosseleccionado.IdMedicamento;
+                MedicamentosDTO.NombreMedicamento = Medicamentosseleccionado.NombreMedicamento;
+                MedicamentosDTO.Precio = Medicamentosseleccionado.Precio;
+                MedicamentosDTO.Activo = Medicamentosseleccionado.Activo;
 
                 ListaTodosLosMedicamentosDto.Add(MedicamentosDTO);
             }
@@ -53,10 +53,10 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             MedicamentosDto MedicamentosDTO = new();
 
-            MedicamentosDto.IdMedicamento = Doctorseleccionado.IdMedicamento;
-            MedicamentosDto.NombreMedicamento = Doctorseleccionado.NombreMedicamento;
-            MedicamentosDto.Precio = Doctorseleccionado.Precio;
-            MedicamentosDto.Activo = Doctorseleccionado.Activo;
+            MedicamentosDTO.IdMedicamento = Medicamentosseleccionado.IdMedicamento;
+            MedicamentosDTO.NombreMedicamento = Medicamentosseleccionado.NombreMedicamento;
+            MedicamentosDTO.Precio = Medicamentosseleccionado.Precio;
+            MedicamentosDTO.Activo = Medicamentosseleccionado.Activo;
 
             return Ok(MedicamentosDTO);
         }
@@ -70,7 +70,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
                 return BadRequest(ModelState.Values);
             }
 
-            Doctores DoctorPorInsertar = new();
+            Medicamentos MedicamentosPorInsertar = new();
 
             MedicamentosPorInsertar.IdMedicamento = MedicamentosDTO.IdMedicamento;
             MedicamentosPorInsertar.NombreMedicamento = MedicamentosDTO.NombreMedicamento;
@@ -86,7 +86,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
         // PUT api/<MedicamentosController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] DoctoresDto DoctoresDTO)
+        public IActionResult Put(string id, [FromBody] MedicamentosDto MedicamentosDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -99,10 +99,11 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             if (Medicamentosseleccionado.IdMedicamento is null)
             {
-                return NotFound("Doctor no encontrado");
+                return NotFound("Medicamentos no encontrados");
             }
 
             Medicamentos MedicamentosPorActualizar = new();
+
             MedicamentosPorActualizar.IdMedicamento = MedicamentosDTO.IdMedicamento;
             MedicamentosPorActualizar.NombreMedicamento = MedicamentosDTO.NombreMedicamento;
             MedicamentosPorActualizar.Precio = MedicamentosDTO.Precio;
@@ -116,7 +117,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
             return Ok();
         }
 
-        // DELETE api/<DoctorController>/5
+        // DELETE api/<MedicamentosController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {

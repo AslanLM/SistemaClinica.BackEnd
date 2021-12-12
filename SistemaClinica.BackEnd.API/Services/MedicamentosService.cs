@@ -37,7 +37,7 @@ namespace SistemaClinica.BackEnd.API.Services
             }
         }
 
-        public Pacientes SeleccionarPorId(string id)
+        public Medicamentos SeleccionarPorId(string id)
         {
             Medicamentos MedicamentosSeleccionado = new();
 

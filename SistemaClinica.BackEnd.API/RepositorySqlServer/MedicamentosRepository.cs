@@ -40,7 +40,7 @@ namespace SistemaClinica.BackEnd.API.Repository
         public void Insertar(Medicamentos medicamentos)
         {
 
-            var query = "SP_Pacientes_Insertar";
+            var query = "SP_Medicamentos_Insertar";
             var command = CreateCommand(query);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -84,18 +84,18 @@ namespace SistemaClinica.BackEnd.API.Repository
             return MedicamentosSeleccionado;
         }
 
-        public List<Pacientes> SeleccionarTodos()
+        public List<Medicamentos> SeleccionarTodos()
         {
             var query = "SELECT * FROM vwMedicamentos_SeleccionarTodos";
             var command = CreateCommand(query);
 
             SqlDataReader reader = command.ExecuteReader();
 
-            List<Pacientes> ListaTodosLosMedicamentos = new List<Medicamentos>();
+            List<Medicamentos> ListaTodosLosMedicamentos = new List<Medicamentos>();
 
             while (reader.Read())
             {
-                Pacientes MedicamentosSeleccionado = new();
+                Medicamentos MedicamentosSeleccionado = new();
 
                 MedicamentosSeleccionado.IdMedicamento = Convert.ToString(reader["IdMedicamento"]);
                 MedicamentosSeleccionado.NombreMedicamento = Convert.ToString(reader["NombreMedicamento"]);

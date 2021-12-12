@@ -9,6 +9,7 @@ namespace SistemaClinica.BackEnd.API.UnitOfWork.Interfaces
         IPacientesRepository PacientesRepository { get; }
         IClinicaRepository ClinicaRepository { get; }
         IConsultorioRepository ConsultorioRepository { get; }
+        IMedicamentosRepository MedicamentosRepository { get; }
 
 
     }

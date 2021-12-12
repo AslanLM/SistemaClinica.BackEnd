@@ -13,6 +13,7 @@ namespace SistemaClinica.BackEnd.API.UnitOfWork.SqlServer
         public IPacientesRepository PacientesRepository { get; }
         public IClinicaRepository ClinicaRepository { get; }
         public IConsultorioRepository ConsultorioRepository { get; }
+        public IMedicamentosRepository MedicamentosRepository { get; }
         //Acá van todos los otros repositorios
         public UnitOfWorkSqlServerRepository(SqlConnection context, SqlTransaction transaction)
         {

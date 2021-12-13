@@ -3,7 +3,7 @@ using SistemaClinica.BackEnd.API.Models;
 
 namespace SistemaClinica.BackEnd.API.Repository.Interfaces
 {
-    public interface IMedicamentosRepository : IObtenerRepository<Medicamentos, string>, IInsertarRepository<Medicamentos>, IActualizarRepository<Medicamentos>, IEliminarRepository<int>
+    public interface IMedicamentosRepository : IObtenerRepository<Medicamentos, int>, IInsertarRepository<Medicamentos>, IActualizarRepository<Medicamentos>, IEliminarRepository<int>
     {
     }
 }

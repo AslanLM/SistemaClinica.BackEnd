@@ -19,7 +19,7 @@ namespace SistemaClinica.BackEnd.API.Repository
         }
         public void Actualizar(Medicamentos medicamentos)
         {
-            var query = "SP_Pacientes_Actualizar";
+            var query = "SP_Medicamentos_Actualizar";
             var command = CreateCommand(query);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -44,20 +44,19 @@ namespace SistemaClinica.BackEnd.API.Repository
             var command = CreateCommand(query);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            command.Parameters.AddWithValue("@IdMedicamento", medicamentos.IdMedicamento);
+            //command.Parameters.AddWithValue("@IdMedicamento", medicamentos.IdMedicamento);
             command.Parameters.AddWithValue("@NombreMedicamento", medicamentos.NombreMedicamento);
             command.Parameters.AddWithValue("@Precio", medicamentos.Precio);
-            command.Parameters.AddWithValue("@Activo", medicamentos.Activo);
-            command.Parameters.AddWithValue("@ModificadoPor", medicamentos.ModificadoPor);
+            command.Parameters.AddWithValue("@CreadoPor", medicamentos.CreadoPor);
 
             command.ExecuteNonQuery();
 
             //throw new NotImplementedException();
         }
 
-        public Medicamentos SeleccionarPorId(String IdMedicamento)
+        public Medicamentos SeleccionarPorId(int IdMedicamento)
         {
-            var query = "SELECT * FROM vwPaciente_SeleccionarTodos WHERE CedulaPaciente = @CedulaPaciente";
+            var query = "SELECT * FROM vwMedicamentos_SeleccionarTodos WHERE IdMedicamento = @IdMedicamento";
             var command = CreateCommand(query);
 
             command.Parameters.AddWithValue("@IdMedicamento", IdMedicamento);
@@ -68,9 +67,9 @@ namespace SistemaClinica.BackEnd.API.Repository
 
             while (reader.Read())
             {
-                MedicamentosSeleccionado.IdMedicamento = Convert.ToString(reader["CedulaPaciente"]);
-                MedicamentosSeleccionado.NombreMedicamento = Convert.ToString(reader["NombrePaciente"]);
-                MedicamentosSeleccionado.Precio = Convert.ToInt32(reader["Edad"]);
+                MedicamentosSeleccionado.IdMedicamento = Convert.ToInt32(reader["IdMedicamento"]);
+                MedicamentosSeleccionado.NombreMedicamento = Convert.ToString(reader["NombreMedicamento"]);
+                MedicamentosSeleccionado.Precio = Convert.ToDecimal(reader["Precio"]);
                 MedicamentosSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
                 MedicamentosSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
                 MedicamentosSeleccionado.FechaModificacion = (DateTime?)(reader.IsDBNull("FechaModificacion") ? null : reader["FechaModificacion"]);
@@ -97,9 +96,9 @@ namespace SistemaClinica.BackEnd.API.Repository
             {
                 Medicamentos MedicamentosSeleccionado = new();
 
-                MedicamentosSeleccionado.IdMedicamento = Convert.ToString(reader["IdMedicamento"]);
+                MedicamentosSeleccionado.IdMedicamento = Convert.ToInt32(reader["IdMedicamento"]);
                 MedicamentosSeleccionado.NombreMedicamento = Convert.ToString(reader["NombreMedicamento"]);
-                MedicamentosSeleccionado.Precio = Convert.ToInt32(reader["Precio"]);
+                MedicamentosSeleccionado.Precio = Convert.ToDecimal(reader["Precio"]);
                 MedicamentosSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
                 MedicamentosSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
                 MedicamentosSeleccionado.FechaModificacion = (DateTime?)(reader.IsDBNull("FechaModificacion") ? null : reader["FechaModificacion"]);

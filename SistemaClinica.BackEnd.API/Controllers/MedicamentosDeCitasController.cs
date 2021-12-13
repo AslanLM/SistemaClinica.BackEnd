@@ -6,7 +6,7 @@ using System.Collections.Generic;
     
 namespace SistemaClinica.BackEnd.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     [ApiController]
     public class MedicamentosDeCitasController : ControllerBase
     {

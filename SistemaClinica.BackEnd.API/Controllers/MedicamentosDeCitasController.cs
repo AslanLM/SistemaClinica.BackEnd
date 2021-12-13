@@ -4,7 +4,7 @@ using SistemaClinica.BackEnd.API.Dtos;
 using SistemaClinica.BackEnd.API.Services.Interfaces;
 using System.Collections.Generic;
     
-namespace SistemaClinica.BackEnd.API.Controllers 
+namespace SistemaClinica.BackEnd.API.Controllers  
 {
     [Route("api/[controller]")] 
     [ApiController]

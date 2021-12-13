@@ -4,11 +4,11 @@ using SistemaClinica.BackEnd.API.Dtos;
 using SistemaClinica.BackEnd.API.Services.Interfaces;
 using System.Collections.Generic;
     
-namespace SistemaClinica.BackEnd.API.Controllers
+namespace SistemaClinica.BackEnd.API.Controllers 
 {
     [Route("api/[controller]")] 
     [ApiController]
-    public class MedicamentosDeCitasController : ControllerBase
+    public class MedicamentosDeCitasController : ControllerBase 
     {
         private readonly IMedicamentosDeCitasService MedicamentosDeCitasServicio;
         public MedicamentosDeCitasController(IMedicamentosDeCitasService MedicamentosDeCitasService)

@@ -23,7 +23,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             List<MedicamentosDeCitasDto> ListaTodosLosMedicamentosDeCitasDto = new();
 
-            foreach (var MedicamentosDeCitasseleccionado in ListaTodosLosMedicamentosDeCitasDto)
+            foreach (var MedicamentosDeCitasseleccionado in ListaTodosLosMedicamentosDeCitas)
             {
                 MedicamentosDeCitasDto MedicamentosDeCitasDTO = new();
 
@@ -39,26 +39,26 @@ namespace SistemaClinica.BackEnd.API.Controllers
         }
 
         // GET api/<MedicamentosDeCitasController>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{IdCita}")]
+        public List<MedicamentosDeCitasDto> Get(int IdCita)
         {
-            MedicamentosDeCitas MedicamentosDeCitasseleccionado = new();
+            List<MedicamentosDeCitas> ListaTodosLosMedicamentosDeCitas = MedicamentosDeCitasServicio.SeleccionarTodosPorIdCita(IdCita);
 
-            MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorId(id);
+            List<MedicamentosDeCitasDto> ListaTodosLosMedicamentosDeCitasDto = new();
 
-            if (MedicamentosDeCitasseleccionado.IdMedicamento is 0)
+            foreach (var MedicamentosDeCitasseleccionado in ListaTodosLosMedicamentosDeCitas)
             {
-                return NotFound("Medicamento no encontrado");
+                MedicamentosDeCitasDto MedicamentosDeCitasDTO = new();
+
+                MedicamentosDeCitasDTO.IdMedicamento = MedicamentosDeCitasseleccionado.IdMedicamento;
+                MedicamentosDeCitasDTO.IdCita = MedicamentosDeCitasseleccionado.IdCita;
+                MedicamentosDeCitasDTO.PrecioMedicamento = MedicamentosDeCitasseleccionado.PrecioMedicamento;
+                MedicamentosDeCitasDTO.Activo = MedicamentosDeCitasseleccionado.Activo;
+
+                ListaTodosLosMedicamentosDeCitasDto.Add(MedicamentosDeCitasDTO);
             }
 
-            MedicamentosDeCitasDto MedicamentosDeCitasDTO = new();
-
-            MedicamentosDeCitasDTO.IdMedicamento = MedicamentosDeCitasseleccionado.IdMedicamento;
-            MedicamentosDeCitasDTO.IdCita = MedicamentosDeCitasseleccionado.IdCita;
-            MedicamentosDeCitasDTO.PrecioMedicamento = MedicamentosDeCitasseleccionado.PrecioMedicamento;
-            MedicamentosDeCitasDTO.Activo = MedicamentosDeCitasseleccionado.Activo;
-
-            return Ok(MedicamentosDeCitasDTO);
+            return ListaTodosLosMedicamentosDeCitasDto;
         }
 
         // POST api/<MedicamentosDeCitasController>
@@ -83,9 +83,9 @@ namespace SistemaClinica.BackEnd.API.Controllers
             return Ok();
         }
 
-        // PUT api/<MedicamentosDeCitasController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] MedicamentosDeCitasDto MedicamentosDeCitasDTO)
+        // PUT api/<MedicamentosDeCitasController>/5/3
+       /* [HttpPut("{IdMedicamento}/{IdCita}")]
+        public IActionResult Put(int IdMedicamento, int IdCita, [FromBody] MedicamentosDeCitasDto MedicamentosDeCitasDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -94,9 +94,9 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             MedicamentosDeCitas MedicamentosDeCitasseleccionado = new();
 
-            MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorId(id);
+            MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorIdMultiple(IdMedicamento, IdCita);
 
-            if (MedicamentosDeCitasseleccionado.IdMedicamento is 0)
+            if (MedicamentosDeCitasseleccionado.IdMedicamento is 0 && MedicamentosDeCitasseleccionado.IdCita is 0)
             {
                 return NotFound("Medicamento no encontrado");
             }
@@ -114,15 +114,15 @@ namespace SistemaClinica.BackEnd.API.Controllers
             MedicamentosDeCitasServicio.Actualizar(MedicamentosDeCitasPorActualizar);
 
             return Ok();
-        }
+        }*/
 
         // DELETE api/<MedicamentosDeCitaController>/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{IdMedicamento}/{IdCita}")]
+        public IActionResult Delete(int IdMedicamento, int IdCita)
         {
             MedicamentosDeCitas MedicamentosDeCitasseleccionado = new();
 
-            MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorId(id);
+            MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorIdMultiple(IdMedicamento, IdCita);
 
             if (MedicamentosDeCitasseleccionado.IdMedicamento is 0)
             {

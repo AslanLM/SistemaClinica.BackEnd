@@ -25,7 +25,6 @@ namespace SistemaClinica.BackEnd.API.Repository
 
             command.Parameters.AddWithValue("@IdMedicamento", medicamentosDeCitas.IdMedicamento);
             command.Parameters.AddWithValue("@IdCita", medicamentosDeCitas.IdCita);
-            command.Parameters.AddWithValue("@PrecioMedicamento", medicamentosDeCitas.PrecioMedicamento);
             command.Parameters.AddWithValue("@Activo", medicamentosDeCitas.Activo);
             command.Parameters.AddWithValue("@ModificadoPor", medicamentosDeCitas.ModificadoPor);
 
@@ -54,12 +53,18 @@ namespace SistemaClinica.BackEnd.API.Repository
             //throw new NotImplementedException();
         }
 
-        public MedicamentosDeCitas SeleccionarPorId(int IdMedicamento)
+        public MedicamentosDeCitas SeleccionarPorId(int Id)
         {
-            var query = "SELECT * FROM vwMedicamentosDeCitas_SeleccionarTodos WHERE IdMedicamento = @IdMedicamento";
+            throw new NotImplementedException();
+        }
+
+        public MedicamentosDeCitas SeleccionarPorIdMultiple(int IdMedicamento, int IdCita)
+        {
+            var query = "SELECT * FROM vwMedicamentosDeCitas_SeleccionarTodos WHERE IdMedicamento = @IdMedicamento AND IdCita = @IdCita";
             var command = CreateCommand(query);
 
             command.Parameters.AddWithValue("@IdMedicamento", IdMedicamento);
+            command.Parameters.AddWithValue("@IdCita", IdCita);
 
             SqlDataReader reader = command.ExecuteReader();
 
@@ -81,12 +86,46 @@ namespace SistemaClinica.BackEnd.API.Repository
             reader.Close();
 
             return MedicamentosDeCitasSeleccionado;
+            
         }
 
         public List<MedicamentosDeCitas> SeleccionarTodos()
         {
-            var query = "SELECT * FROM vwMedicamentosDeCita_SeleccionarTodos";
+            var query = "SELECT * FROM vwMedicamentosDeCitas_SeleccionarTodos";
             var command = CreateCommand(query);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<MedicamentosDeCitas> ListaTodosLosMedicamentosDeCitas = new List<MedicamentosDeCitas>();
+
+            while (reader.Read())
+            {
+                MedicamentosDeCitas MedicamentosDeCitasSeleccionado = new();
+
+                MedicamentosDeCitasSeleccionado.IdMedicamento = Convert.ToInt32(reader["IdMedicamento"]);
+                MedicamentosDeCitasSeleccionado.IdCita = Convert.ToInt32(reader["IdCita"]);
+                MedicamentosDeCitasSeleccionado.PrecioMedicamento = Convert.ToDecimal(reader["PrecioMedicamento"]);
+                MedicamentosDeCitasSeleccionado.Activo = Convert.ToBoolean(reader["Activo"]);
+                MedicamentosDeCitasSeleccionado.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
+                MedicamentosDeCitasSeleccionado.FechaModificacion = (DateTime?)(reader.IsDBNull("FechaModificacion") ? null : reader["FechaModificacion"]);
+                MedicamentosDeCitasSeleccionado.CreadoPor = Convert.ToString(reader["CreadoPor"]);
+                MedicamentosDeCitasSeleccionado.ModificadoPor = Convert.ToString(reader["ModificadoPor"]);
+
+                ListaTodosLosMedicamentosDeCitas.Add(MedicamentosDeCitasSeleccionado);
+            }
+
+            reader.Close();
+
+            return ListaTodosLosMedicamentosDeCitas;
+        }
+
+        public List<MedicamentosDeCitas> SeleccionarTodosPorIdCita(int IdCita)
+        {
+            var query = "SELECT * FROM vwMedicamentosDeCitas_SeleccionarTodos WHERE IdCita = @IdCita ";
+            var command = CreateCommand(query);
+
+            command.Parameters.AddWithValue("@IdCita", IdCita);
+
 
             SqlDataReader reader = command.ExecuteReader();
 

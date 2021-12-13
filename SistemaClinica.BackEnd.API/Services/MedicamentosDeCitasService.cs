@@ -37,13 +37,13 @@ namespace SistemaClinica.BackEnd.API.Services
             }
         }
 
-        public MedicamentosDeCitas SeleccionarPorId(int id)
+        public MedicamentosDeCitas SeleccionarPorIdMultiple(int IdMedicamento, int IdCita)
         {
             MedicamentosDeCitas MedicamentosDeCitasSeleccionado = new();
 
             using (var bd = BD.Conectar())
             {
-                MedicamentosDeCitasSeleccionado = bd.Repositories.MedicamentosDeCitasRepository.SeleccionarPorId(id);
+                MedicamentosDeCitasSeleccionado = bd.Repositories.MedicamentosDeCitasRepository.SeleccionarPorIdMultiple(IdMedicamento, IdCita);
 
                 bd.SaveChanges();
             }
@@ -58,6 +58,20 @@ namespace SistemaClinica.BackEnd.API.Services
             using (var bd = BD.Conectar())
             {
                 ListaTodosLosMedicamentosDeCitas = bd.Repositories.MedicamentosDeCitasRepository.SeleccionarTodos();
+
+                bd.SaveChanges();
+            }
+
+            return ListaTodosLosMedicamentosDeCitas;
+        }
+
+        public List<MedicamentosDeCitas> SeleccionarTodosPorIdCita(int IdCita)
+        {
+            List<MedicamentosDeCitas> ListaTodosLosMedicamentosDeCitas;
+
+            using (var bd = BD.Conectar())
+            {
+                ListaTodosLosMedicamentosDeCitas = bd.Repositories.MedicamentosDeCitasRepository.SeleccionarTodosPorIdCita(IdCita);
 
                 bd.SaveChanges();
             }

@@ -7,8 +7,8 @@ AS
 BEGIN
 	UPDATE DiagnosticosDeCitas 
 	SET 
-		IdDiagnostico = @IdDiagnostico, 
-		IdCita = @IdCita, 
+		--IdDiagnostico = @IdDiagnostico, 
+		--IdCita = @IdCita, 
 		Activo = @Activo,
 		ModificadoPor = @ModificadoPor,
 		FechaModificacion = GETDATE()

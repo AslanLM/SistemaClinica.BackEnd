@@ -30,6 +30,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
             command.Parameters.AddWithValue("@CedulaPaciente", citas.CedulaPaciente);
             command.Parameters.AddWithValue("@IdConsultorio", citas.IdConsultorio);
             command.Parameters.AddWithValue("@IdDiagnostico", citas.IdDiagnostico);
+            command.Parameters.AddWithValue("@MontoDeConsulta", citas.MontoDeConsulta);
             command.Parameters.AddWithValue("@Activo", citas.Activo);
             command.Parameters.AddWithValue("@ModificadoPor", citas.ModificadoPor);
 
@@ -51,13 +52,14 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
 
             //command.Parameters.AddWithValue("@IdClinica", clinica.IdClinica);
             command.Parameters.AddWithValue("@FechaYHoraInicioCita", citas.FechaYHoraInicioCita);
-            command.Parameters.AddWithValue("@FechaYHoraInicioCita", citas.FechaYHoraFinCita);
+            command.Parameters.AddWithValue("@FechaYHoraFinCita", citas.FechaYHoraFinCita);
             command.Parameters.AddWithValue("@CedulaDoctor", citas.CedulaDoctor);
             command.Parameters.AddWithValue("@CedulaPaciente", citas.CedulaPaciente);
             command.Parameters.AddWithValue("@IdConsultorio", citas.IdConsultorio);
             command.Parameters.AddWithValue("@IdDiagnostico", citas.IdDiagnostico);
-            command.Parameters.AddWithValue("@Activo", citas.Activo);
-            command.Parameters.AddWithValue("@ModificadoPor", citas.ModificadoPor);
+            command.Parameters.AddWithValue("@MontoDeConsulta", citas.MontoDeConsulta);
+
+            command.Parameters.AddWithValue("@CreadoPor", citas.CreadoPor);
 
             command.ExecuteNonQuery();
 
@@ -66,7 +68,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
 
         public Citas SeleccionarPorId(int IdCita)
         {
-            var query = "SELECT * FROM vwCitas_SeleccionarTodo WHERE IdCita = @IdCita";
+            var query = "SELECT * FROM vwCitas_SeleccionarTodos WHERE IdCita = @IdCita";
             var command = CreateCommand(query);
 
             command.Parameters.AddWithValue("@IdCita", IdCita);
@@ -102,7 +104,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
 
         public List<Citas> SeleccionarTodos()
         {
-            var query = "SELECT * FROM vwCitas_SeleccionarTodo";
+            var query = "SELECT * FROM vwCitas_SeleccionarTodos";
             var command = CreateCommand(query);
 
             SqlDataReader reader = command.ExecuteReader();
@@ -121,7 +123,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
                 CitaSeleccionada.IdConsultorio = Convert.ToString(reader["IdConsultorio"]);
                 CitaSeleccionada.IdDiagnostico = Convert.ToInt32(reader["IdDiagnostico"]);
                 CitaSeleccionada.MontoDeConsulta = Convert.ToDecimal(reader["MontoDeConsulta"]);
-                CitaSeleccionada.MontoDeMedicamentos = Convert.ToDecimal(reader["MontoDeMedicamentos"]);
+                CitaSeleccionada.MontoDeMedicamentos = Convert.ToDecimal(reader["MontoDeMedicamentos"]); //(reader.IsDBNull("MontoDeMedicamentos")) ? 0 : Convert.ToDecimal(reader["MontoDeMedicamentos"]);
                 CitaSeleccionada.MontoTotal = Convert.ToDecimal(reader["MontoTotal"]);
                 CitaSeleccionada.Activo = Convert.ToBoolean(reader["Activo"]);
                 CitaSeleccionada.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);

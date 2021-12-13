@@ -6,8 +6,8 @@
 	CedulaPaciente VARCHAR(12) NOT NULL,
 	IdConsultorio VARCHAR(50) NOT NULL,	
 	IdDiagnostico INT,
-	MontoDeConsulta DECIMAL(18,3),
-	MontoDeMedicamentos DECIMAL(18,3), --TODO: Por cada medicamento que se compre se debe actualizar este campo, para que sume el costo de cada medicamento
+	MontoDeConsulta DECIMAL(18,3) NOT NULL,
+	MontoDeMedicamentos DECIMAL(18,3) DEFAULT 0 NOT NULL, --TODO: Por cada medicamento que se compre se debe actualizar este campo, para que sume el costo de cada medicamento
 	MontoTotal AS MontoDeConsulta + MontoDeMedicamentos,
 	Activo BIT DEFAULT 1 NOT NULL,
 	FechaCreacion DATETIME DEFAULT GETDATE() NOT NULL,

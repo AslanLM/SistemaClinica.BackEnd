@@ -16,6 +16,7 @@ namespace SistemaClinica.BackEnd.API.UnitOfWork.SqlServer
         public IMedicamentosRepository MedicamentosRepository { get; }
         public IMedicamentosDeCitasRepository MedicamentosDeCitasRepository { get; }
         public ICitasRepository CitasRepository { get; }
+        public IDiagnosticoRepository DiagnosticoRepository { get; }
 
         //Acá van todos los otros repositorios
         public UnitOfWorkSqlServerRepository(SqlConnection context, SqlTransaction transaction)
@@ -27,8 +28,7 @@ namespace SistemaClinica.BackEnd.API.UnitOfWork.SqlServer
             MedicamentosRepository = new MedicamentosRepository(context, transaction);
             MedicamentosDeCitasRepository = new MedicamentosDeCitasRepository(context, transaction);
             CitasRepository = new CitasRepository(context, transaction);
-
-
+            DiagnosticoRepository = new DiagnosticoRepository(context, transaction);
 
             //Acá van todos los otros repositorios
 

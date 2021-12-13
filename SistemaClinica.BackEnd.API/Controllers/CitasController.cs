@@ -32,7 +32,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
                 CitasDTO.FechaYHoraInicioCita = Citaseleccionada.FechaYHoraInicioCita;
                 CitasDTO.FechaYHoraFinCita = Citaseleccionada.FechaYHoraFinCita;
                 CitasDTO.CedulaDoctor = Citaseleccionada.CedulaDoctor;
-                CitasDTO.CedulaDoctor = Citaseleccionada.CedulaDoctor;
+                CitasDTO.CedulaPaciente = Citaseleccionada.CedulaPaciente;
                 CitasDTO.IdConsultorio = Citaseleccionada.IdConsultorio;
                 CitasDTO.IdDiagnostico = Citaseleccionada.IdDiagnostico;
                 CitasDTO.MontoDeConsulta = Citaseleccionada.MontoDeConsulta;
@@ -66,7 +66,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
             CitasDTO.FechaYHoraInicioCita = Citaseleccionada.FechaYHoraInicioCita;
             CitasDTO.FechaYHoraFinCita = Citaseleccionada.FechaYHoraFinCita;
             CitasDTO.CedulaDoctor = Citaseleccionada.CedulaDoctor;
-            CitasDTO.CedulaDoctor = Citaseleccionada.CedulaDoctor;
+            CitasDTO.CedulaPaciente = Citaseleccionada.CedulaPaciente;
             CitasDTO.IdConsultorio = Citaseleccionada.IdConsultorio;
             CitasDTO.IdDiagnostico = Citaseleccionada.IdDiagnostico;
             CitasDTO.MontoDeConsulta = Citaseleccionada.MontoDeConsulta;
@@ -88,11 +88,16 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             Citas CitaPorInsertar = new();
 
-            CitaPorInsertar.IdCita = CitasDTO.IdCita;
+            //CitaPorInsertar.IdCita = CitasDTO.IdCita;
+            CitaPorInsertar.FechaYHoraInicioCita = CitasDTO.FechaYHoraInicioCita;
+            CitaPorInsertar.FechaYHoraFinCita = CitasDTO.FechaYHoraFinCita;
             CitaPorInsertar.CedulaDoctor = CitasDTO.CedulaDoctor;
             CitaPorInsertar.CedulaPaciente = CitasDTO.CedulaPaciente;
             CitaPorInsertar.IdConsultorio = CitasDTO.IdConsultorio;
             CitaPorInsertar.IdDiagnostico = CitasDTO.IdDiagnostico;
+            CitaPorInsertar.MontoDeConsulta = CitasDTO.MontoDeConsulta;
+            //CitaPorInsertar.MontoDeMedicamentos = CitasDTO.MontoDeMedicamentos;
+            //CitaPorInsertar.MontoTotal = CitasDTO.MontoTotal;
 
             CitaPorInsertar.CreadoPor = "diazgs";
 
@@ -121,10 +126,15 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             Citas CitaPorActualizar = new();
 
+            CitaPorActualizar.IdCita = CitasDTO.IdCita;
+            CitaPorActualizar.FechaYHoraInicioCita = CitasDTO.FechaYHoraInicioCita;
+            CitaPorActualizar.FechaYHoraFinCita = CitasDTO.FechaYHoraFinCita;
             CitaPorActualizar.CedulaDoctor = CitasDTO.CedulaDoctor;
             CitaPorActualizar.CedulaPaciente = CitasDTO.CedulaPaciente;
             CitaPorActualizar.IdConsultorio = CitasDTO.IdConsultorio;
-            CitaPorActualizar.IdDiagnostico = CitasDTO.IdDiagnostico;
+            CitaPorActualizar.MontoDeConsulta = CitasDTO.MontoDeConsulta;
+            CitaPorActualizar.MontoDeMedicamentos = CitasDTO.MontoDeMedicamentos;
+            CitaPorActualizar.MontoTotal = CitasDTO.MontoTotal;
 
             CitaPorActualizar.FechaModificacion = System.DateTime.Now;
             CitaPorActualizar.ModificadoPor = "Yo mismo";

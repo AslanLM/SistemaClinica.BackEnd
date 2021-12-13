@@ -40,15 +40,15 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
         // GET api/<MedicamentosController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        public IActionResult Get(int id)
         {
             Medicamentos Medicamentosseleccionado = new();
 
             Medicamentosseleccionado = MedicamentosServicio.SeleccionarPorId(id);
 
-            if (Medicamentosseleccionado.IdMedicamento is null)
+            if (Medicamentosseleccionado.IdMedicamento is 0)
             {
-                return NotFound("Doctor no encontrado");
+                return NotFound("Medicamento no encontrado");
             }
 
             MedicamentosDto MedicamentosDTO = new();
@@ -72,7 +72,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             Medicamentos MedicamentosPorInsertar = new();
 
-            MedicamentosPorInsertar.IdMedicamento = MedicamentosDTO.IdMedicamento;
+            //MedicamentosPorInsertar.IdMedicamento = MedicamentosDTO.IdMedicamento;
             MedicamentosPorInsertar.NombreMedicamento = MedicamentosDTO.NombreMedicamento;
             MedicamentosPorInsertar.Precio = MedicamentosDTO.Precio;
             MedicamentosPorInsertar.Activo = MedicamentosDTO.Activo;
@@ -86,7 +86,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
         // PUT api/<MedicamentosController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] MedicamentosDto MedicamentosDTO)
+        public IActionResult Put(int id, [FromBody] MedicamentosDto MedicamentosDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             Medicamentosseleccionado = MedicamentosServicio.SeleccionarPorId(id);
 
-            if (Medicamentosseleccionado.IdMedicamento is null)
+            if (Medicamentosseleccionado.IdMedicamento is 0)
             {
                 return NotFound("Medicamentos no encontrados");
             }
@@ -119,15 +119,15 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
         // DELETE api/<MedicamentosController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
             Medicamentos Medicamentosseleccionado = new();
 
             Medicamentosseleccionado = MedicamentosServicio.SeleccionarPorId(id);
 
-            if (Medicamentosseleccionado.IdMedicamento is null)
+            if (Medicamentosseleccionado.IdMedicamento is 0)
             {
-                return NotFound("Doctor no encontrado");
+                return NotFound("Medicamento no encontrado");
             }
 
             Medicamentosseleccionado.Activo = false; //Esto realiza el eliminado lógico

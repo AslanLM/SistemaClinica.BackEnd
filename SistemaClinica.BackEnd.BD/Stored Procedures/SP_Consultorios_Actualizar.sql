@@ -2,7 +2,7 @@
 	@IdConsultorio VARCHAR(50),
 	@NombreConsultorio VARCHAR(50),
 	@IdClinica INT,
-	@Acitvo BIT,
+	@Activo BIT,
 	@ModificadoPor VARCHAR(60)
 
 AS
@@ -11,7 +11,7 @@ BEGIN
 	SET 
 		NombreConsultorio = @NombreConsultorio, 
 		IdClinica = @IdClinica,
-		Activo = @Acitvo,
+		Activo = @Activo,
 		ModificadoPor = @ModificadoPor,
 		FechaModificacion = GETDATE()
 	WHERE 

@@ -6,6 +6,7 @@
 	@CedulaPaciente VARCHAR(12),
 	@IdConsultorio VARCHAR(50),
 	@IdDiagnostico INT,
+	@Activo BIT,
 	@ModificadoPor VARCHAR(60)
 AS
 BEGIN
@@ -17,6 +18,7 @@ BEGIN
 		CedulaPaciente = @CedulaPaciente, 
 		IdConsultorio = @IdConsultorio, 
 		IdDiagnostico = @IdDiagnostico,
+		Activo = @Activo,
 		ModificadoPor = @ModificadoPor,
 		FechaModificacion = GETDATE()
 	WHERE 

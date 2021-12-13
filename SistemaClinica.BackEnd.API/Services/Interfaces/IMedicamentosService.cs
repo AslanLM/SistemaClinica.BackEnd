@@ -6,7 +6,7 @@ namespace SistemaClinica.BackEnd.API.Services.Interfaces
     public interface IMedicamentosService
     {
         List<Medicamentos> SeleccionarTodos();
-        Medicamentos SeleccionarPorId(string id);
+        Medicamentos SeleccionarPorId(int id);
         void Insertar(Medicamentos model);
         void Actualizar(Medicamentos model);
         void Eliminar(int id);

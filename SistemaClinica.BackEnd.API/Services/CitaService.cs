@@ -5,18 +5,18 @@ using SistemaClinica.BackEnd.API.UnitOfWork.Interfaces;
 
 namespace SistemaClinica.BackEnd.API.Services
 {
-    public class MedicamentosService : IMedicamentosService
+    public class CitaService : ICitaService
     {
         private IUnitOfWork BD;
-        public MedicamentosService(IUnitOfWork unitOfWork)
+        public CitaService(IUnitOfWork unitOfWork)
         {
             BD = unitOfWork;
         }
-        public void Actualizar(Medicamentos model)
+        public void Actualizar(Citas model)
         {
             using (var bd = BD.Conectar())
             {
-                bd.Repositories.MedicamentosRepository.Actualizar(model);
+                bd.Repositories.CitasRepository.Actualizar(model);
 
                 bd.SaveChanges();
             }
@@ -27,43 +27,43 @@ namespace SistemaClinica.BackEnd.API.Services
             throw new System.NotImplementedException();
         }
 
-        public void Insertar(Medicamentos model)
+        public void Insertar(Citas model)
         {
             using (var bd = BD.Conectar())
             {
-                bd.Repositories.MedicamentosRepository.Insertar(model);
+                bd.Repositories.CitasRepository.Insertar(model);
 
                 bd.SaveChanges();
             }
         }
 
-        public Medicamentos SeleccionarPorId(int id)
+        public Citas SeleccionarPorId(int id)
         {
-            Medicamentos MedicamentosSeleccionado = new();
+            Citas CitaSeleccionada = new();
 
             using (var bd = BD.Conectar())
             {
-                MedicamentosSeleccionado = bd.Repositories.MedicamentosRepository.SeleccionarPorId(id);
+                CitaSeleccionada = bd.Repositories.CitasRepository.SeleccionarPorId(id);
 
                 bd.SaveChanges();
             }
 
-            return MedicamentosSeleccionado;
+            return CitaSeleccionada;
         }
 
-        public List<Medicamentos> SeleccionarTodos()
+        public List<Citas> SeleccionarTodos()
         {
-            List<Medicamentos> ListaTodosLosMedicamentos;
+            List<Citas> ListaTodasLasCitas;
 
             using (var bd = BD.Conectar())
             {
-                ListaTodosLosMedicamentos = bd.Repositories.MedicamentosRepository.SeleccionarTodos();
+                ListaTodasLasCitas = bd.Repositories.CitasRepository.SeleccionarTodos();
 
                 bd.SaveChanges();
             }
 
-            return ListaTodosLosMedicamentos;
+            return ListaTodasLasCitas;
+
         }
     }
 }
-

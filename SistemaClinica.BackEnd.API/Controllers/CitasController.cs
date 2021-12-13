@@ -88,7 +88,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             Citas CitaPorInsertar = new();
 
-            //CitaPorInsertar.IdCita = CitasDTO.IdCita;
+            CitaPorInsertar.IdCita = CitasDTO.IdCita;
             CitaPorInsertar.CedulaDoctor = CitasDTO.CedulaDoctor;
             CitaPorInsertar.CedulaPaciente = CitasDTO.CedulaPaciente;
             CitaPorInsertar.IdConsultorio = CitasDTO.IdConsultorio;

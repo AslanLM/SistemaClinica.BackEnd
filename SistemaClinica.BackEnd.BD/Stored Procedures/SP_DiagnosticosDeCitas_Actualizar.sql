@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE SP_DiagnosticosDeCitas_Actualizar --Para esta Aplicación posiblemente este SP no se utilice.
 	@IdDiagnostico INT, 
 	@IdCita INT,
+	@Activo BIT,
 	@ModificadoPor VARCHAR(60)
 AS
 BEGIN
@@ -8,6 +9,7 @@ BEGIN
 	SET 
 		IdDiagnostico = @IdDiagnostico, 
 		IdCita = @IdCita, 
+		Activo = @Activo,
 		ModificadoPor = @ModificadoPor,
 		FechaModificacion = GETDATE()
 	WHERE 

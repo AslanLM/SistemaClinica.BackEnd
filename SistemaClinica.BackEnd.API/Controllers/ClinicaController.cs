@@ -73,7 +73,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             Clinicas ClinicaPorInsertar = new();
 
-            ClinicaPorInsertar.IdClinica = ClinicasDTO.IdClinica;
+            //ClinicaPorInsertar.IdClinica = ClinicasDTO.IdClinica;
             ClinicaPorInsertar.NombreClinica = ClinicasDTO.NombreClinica;
             ClinicaPorInsertar.CedulaJuridica = ClinicasDTO.CedulaJuridica;
 

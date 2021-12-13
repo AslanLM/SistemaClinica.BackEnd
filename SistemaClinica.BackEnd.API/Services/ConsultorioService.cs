@@ -5,10 +5,10 @@ using SistemaClinica.BackEnd.API.UnitOfWork.Interfaces;
 
 namespace SistemaClinica.BackEnd.API.Services
 {
-    public class ConsultorioSerivce : IConsultorioService
+    public class ConsultorioService : IConsultorioService
     {
         private IUnitOfWork BD;
-        public ConsultorioSerivce(IUnitOfWork unitOfWork)
+        public ConsultorioService(IUnitOfWork unitOfWork)
         {
             BD = unitOfWork;
         }

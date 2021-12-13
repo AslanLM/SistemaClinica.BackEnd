@@ -45,7 +45,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
             var command = CreateCommand(query);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            command.Parameters.AddWithValue("@IdClinica", clinica.IdClinica);
+            //command.Parameters.AddWithValue("@IdClinica", clinica.IdClinica);
             command.Parameters.AddWithValue("@NombreClinica", clinica.NombreClinica);
             command.Parameters.AddWithValue("@CedulaJuridica", clinica.CedulaJuridica);
             command.Parameters.AddWithValue("@CreadoPor", clinica.CreadoPor);

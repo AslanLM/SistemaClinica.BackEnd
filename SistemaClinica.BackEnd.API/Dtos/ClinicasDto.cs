@@ -9,8 +9,6 @@ namespace SistemaClinica.BackEnd.API.Dtos
     public class ClinicasDto
     {
         [Required(ErrorMessage = "{0} es un campo obligatorio")]
-        [MaxLength(10, ErrorMessage = "{0} tiene que tener máximo {1} caracteres")]
-
         public int IdClinica { get; set; }
 
         [Required(ErrorMessage = "{0} es un campo obligatorio")]

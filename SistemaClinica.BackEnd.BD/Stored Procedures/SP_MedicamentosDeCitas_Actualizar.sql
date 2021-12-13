@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE SP_MedicamentosDeCitas_Actualizar --Para esta aplicación quizá este SP no se utilice
 	@IdMedicamento INT, 
 	@IdCita INT,
+	@Activo BIT,
 	@ModificadoPor VARCHAR(60)
 AS
 BEGIN
@@ -12,7 +13,8 @@ BEGIN
 	SET 
 		IdMedicamento = @IdMedicamento, 
 		IdCita = @IdCita, 
-		PrecioMedicamento = @PrecioMedicamento, 
+		PrecioMedicamento = @PrecioMedicamento,
+        Activo = @Activo,
 		ModificadoPor = @ModificadoPor,
 		FechaModificacion = GETDATE()
 	WHERE 

@@ -46,7 +46,8 @@ namespace SistemaClinica.BackEnd.API
             services.AddTransient<IDoctorService, DoctorService>();
             services.AddTransient<IPacientesService, PacientesService>();
             services.AddTransient<IClinicaService, ClinicaService>();
-            services.AddTransient<IConsultorioService, ConsultorioSerivce>();
+            services.AddTransient<IConsultorioService, ConsultorioService>();
+            services.AddTransient<ICitaService, CitaService>();
 
         }
 

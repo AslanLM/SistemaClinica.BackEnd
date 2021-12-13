@@ -4,11 +4,11 @@ namespace SistemaClinica.BackEnd.API.Models
 {
 	public class MedicamentosDeCitas
 	{
-		public string IdMedicamento { get; set; }
+		public int IdMedicamento { get; set; }
 
-		public string IdCita { get; set; }
+		public int IdCita { get; set; }
 
-		public int PrecioMedicamento { get; set; }
+		public decimal PrecioMedicamento { get; set; }
 
 		public bool Activo { get; set; }
 

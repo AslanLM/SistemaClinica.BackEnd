@@ -40,15 +40,15 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
         // GET api/<MedicamentosDeCitasController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        public IActionResult Get(int id)
         {
             MedicamentosDeCitas MedicamentosDeCitasseleccionado = new();
 
             MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorId(id);
 
-            if (MedicamentosDeCitasseleccionado.IdMedicamento is null)
+            if (MedicamentosDeCitasseleccionado.IdMedicamento is 0)
             {
-                return NotFound("Paciente no encontrado");
+                return NotFound("Medicamento no encontrado");
             }
 
             MedicamentosDeCitasDto MedicamentosDeCitasDTO = new();
@@ -85,7 +85,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
         // PUT api/<MedicamentosDeCitasController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] MedicamentosDeCitasDto MedicamentosDeCitasDTO)
+        public IActionResult Put(int id, [FromBody] MedicamentosDeCitasDto MedicamentosDeCitasDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -96,9 +96,9 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorId(id);
 
-            if (MedicamentosDeCitasseleccionado.IdMedicamento is null)
+            if (MedicamentosDeCitasseleccionado.IdMedicamento is 0)
             {
-                return NotFound("Paciente no encontrado");
+                return NotFound("Medicamento no encontrado");
             }
 
             MedicamentosDeCitas MedicamentosDeCitasPorActualizar = new();
@@ -118,13 +118,13 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
         // DELETE api/<MedicamentosDeCitaController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
             MedicamentosDeCitas MedicamentosDeCitasseleccionado = new();
 
             MedicamentosDeCitasseleccionado = MedicamentosDeCitasServicio.SeleccionarPorId(id);
 
-            if (MedicamentosDeCitasseleccionado.IdMedicamento is null)
+            if (MedicamentosDeCitasseleccionado.IdMedicamento is 0)
             {
                 return NotFound("Paciente no encontrado");
             }

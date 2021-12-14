@@ -15,4 +15,5 @@ BEGIN
 	WHERE 
 		IdDiagnostico = @IdDiagnostico AND
 		IdCita = @IdCita
+
 END

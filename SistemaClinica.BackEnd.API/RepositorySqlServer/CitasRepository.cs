@@ -25,7 +25,7 @@ namespace SistemaClinica.BackEnd.API.RepositorySqlServer
 
             command.Parameters.AddWithValue("@IdCita", citas.IdCita);
             command.Parameters.AddWithValue("@FechaYHoraInicioCita", citas.FechaYHoraInicioCita);
-            command.Parameters.AddWithValue("@FechaYHoraInicioCita", citas.FechaYHoraFinCita);
+            command.Parameters.AddWithValue("@FechaYHoraFinCita", citas.FechaYHoraFinCita);
             command.Parameters.AddWithValue("@CedulaDoctor", citas.CedulaDoctor);
             command.Parameters.AddWithValue("@CedulaPaciente", citas.CedulaPaciente);
             command.Parameters.AddWithValue("@IdConsultorio", citas.IdConsultorio);

@@ -121,7 +121,7 @@ namespace SistemaClinica.BackEnd.API.Controllers
 
             if (Citaseleccionada.IdCita is 0)
             {
-                return NotFound("Citaa no encontrada");
+                return NotFound("Cita no encontrada");
             }
 
             Citas CitaPorActualizar = new();
@@ -132,9 +132,12 @@ namespace SistemaClinica.BackEnd.API.Controllers
             CitaPorActualizar.CedulaDoctor = CitasDTO.CedulaDoctor;
             CitaPorActualizar.CedulaPaciente = CitasDTO.CedulaPaciente;
             CitaPorActualizar.IdConsultorio = CitasDTO.IdConsultorio;
+            CitaPorActualizar.IdDiagnostico = CitasDTO.IdDiagnostico;
             CitaPorActualizar.MontoDeConsulta = CitasDTO.MontoDeConsulta;
-            CitaPorActualizar.MontoDeMedicamentos = CitasDTO.MontoDeMedicamentos;
-            CitaPorActualizar.MontoTotal = CitasDTO.MontoTotal;
+            //CitaPorActualizar.MontoDeMedicamentos = CitasDTO.MontoDeMedicamentos;
+            //CitaPorActualizar.MontoTotal = CitasDTO.MontoTotal;
+            CitaPorActualizar.Activo = CitasDTO.Activo;
+
 
             CitaPorActualizar.FechaModificacion = System.DateTime.Now;
             CitaPorActualizar.ModificadoPor = "Yo mismo";
@@ -156,7 +159,8 @@ namespace SistemaClinica.BackEnd.API.Controllers
             {
                 return NotFound("Cita no encontrada");
             }
-
+            Citaseleccionada.FechaYHoraInicioCita = System.DateTime.Now;
+            Citaseleccionada.FechaYHoraFinCita = System.DateTime.Now;
             Citaseleccionada.Activo = false; //Esto realiza el eliminado lógico
 
             CitaServicio.Actualizar(Citaseleccionada);

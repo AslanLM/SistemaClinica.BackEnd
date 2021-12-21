@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SistemaClinica.BackEnd.BD", "SistemaClinica.BackEnd.BD\SistemaClinica.BackEnd.BD.sqlproj", "{1DCE1FA9-D0FA-4A25-BF3D-9ABB7DC26189}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaClinica.BackEnd.API", "SistemaClinica.BackEnd.API\SistemaClinica.BackEnd.API.csproj", "{D373BE0F-AD68-4C23-9F97-29210E87CDA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaClinica.BackEnd.API", "SistemaClinica.BackEnd.API\SistemaClinica.BackEnd.API.csproj", "{D373BE0F-AD68-4C23-9F97-29210E87CDA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -42,6 +42,14 @@ namespace SistemaClinica.BackEnd.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaClinica.BackEnd.API", Version = "v1" });
             });
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyHeader());
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyMethod());
+            });
+            
+
             services.AddTransient<IUnitOfWork, UnitOfWorkSqlServer>();
             services.AddTransient<IDoctorService, DoctorService>();
             services.AddTransient<IPacientesService, PacientesService>();
@@ -64,6 +72,8 @@ namespace SistemaClinica.BackEnd.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SistemaClinica.BackEnd.API v1"));
             }
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseHttpsRedirection();
 
